@@ -1,0 +1,34 @@
+/*
+Theme Name: John Long Design 2025 v2
+Description: A custom WordPress theme for John Long's UX design portfolio
+Author: John Long
+Version: 1.0.0
+Requires at least: 5.0
+Tested up to: 6.4
+Requires PHP: 7.4
+License: GPL v2 or later
+License URI: https://www.gnu.org/licenses/gpl-2.0.html
+Text Domain: john-long-design
+*/
+
+// Main SCSS file - compiles to main.min.css
+
+// Import partials
+
+// Abstracts
+@use 'abstracts/variables';
+@use 'abstracts/mixins';
+@use 'abstracts/utilities';
+
+// Base
+@use 'base/base';
+
+// Components
+@use 'components/components';
+@use 'components/carousel';
+@use 'components/lightbox';
+@use 'components/gallery';
+
+// Layout
+@use 'layout/layout';
+@use 'layout/sections';
