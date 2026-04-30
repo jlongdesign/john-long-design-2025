@@ -1,0 +1,37 @@
+name: Deploy WordPress Theme
+
+on:
+  push:
+    branches:
+      - main
+      - staging
+
+jobs:
+  ftp-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Deploy to STAGING
+        if: github.ref == 'refs/heads/staging'
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: ${{ secrets.FTP_PORT }}
+          local-dir: ./
+          server-dir: /public_html/staging/wp-content/themes/john-long-design-2025/
+
+      - name: Deploy to PRODUCTION
+        if: github.ref == 'refs/heads/main'
+        uses: SamKirkland/FTP-Deploy-Action@v4.3.4
+        with:
+          server: ${{ secrets.FTP_SERVER }}
+          username: ${{ secrets.FTP_USERNAME }}
+          password: ${{ secrets.FTP_PASSWORD }}
+          port: ${{ secrets.FTP_PORT }}
+          local-dir: ./
+          server-dir: /public_html/wp-content/themes/john-long-design-2025/
