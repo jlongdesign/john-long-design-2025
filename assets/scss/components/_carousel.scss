@@ -1,0 +1,107 @@
+// Lightbox Modal Styles
+.lightbox-modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    
+    .lightbox-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.9);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+    }
+    
+    .lightbox-container {
+        position: relative;
+        max-width: 90vw;
+        max-height: 90vh;
+        
+        .lightbox-close {
+            position: absolute;
+            top: -40px;
+            right: -40px;
+            background: none;
+            border: none;
+            color: white;
+            font-size: 30px;
+            cursor: pointer;
+            z-index: 10001;
+            
+            &:hover {
+                color: #ccc;
+            }
+        }
+        
+        .carousel {
+            .carousel-inner {
+                border-radius: 8px;
+                overflow: hidden;
+                
+                .carousel-item img {
+                    max-height: 80vh;
+                    width: auto;
+                    margin: 0 auto;
+                }
+            }
+            
+            .carousel-control-prev,
+            .carousel-control-next {
+                width: 50px;
+                height: 50px;
+                background: rgba(0, 0, 0, 0.7);
+                border-radius: 50%;
+                top: 50%;
+                transform: translateY(-50%);
+                
+                &:hover {
+                    background: rgba(0, 0, 0, 0.9);
+                }
+            }
+        }
+    }
+}
+
+// Enhanced carousel controls for better visibility
+.solution-image .carousel {
+    .carousel-control-prev,
+    .carousel-control-next {
+        background: rgba(0, 0, 0, 0.6);
+        width: 45px;
+        height: 45px;
+        border-radius: 50%;
+        top: 50%;
+        transform: translateY(-50%);
+        border: 2px solid rgba(255, 255, 255, 0.8);
+        
+        &:hover {
+            background: rgba(0, 0, 0, 0.8);
+            border-color: white;
+        }
+    }
+    
+    .carousel-indicators {
+        bottom: -35px;
+        
+        button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(0, 0, 0, 0.4);
+            border: 2px solid rgba(255, 255, 255, 0.6);
+            
+            &.active {
+                background: var(--bs-primary);
+                border-color: white;
+            }
+        }
+    }
+}
