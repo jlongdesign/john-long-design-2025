@@ -23,7 +23,7 @@ jobs:
           password: ${{ secrets.FTP_PASSWORD }}
           port: ${{ secrets.FTP_PORT }}
           local-dir: ./
-          server-dir: /public_html/staging/wp-content/themes/john-long-design-2025/
+          server-dir: /public_html/staging/7247/wp-content/themes/john-long-design-2025/
 
       - name: Deploy to PRODUCTION
         if: github.ref == 'refs/heads/main'
