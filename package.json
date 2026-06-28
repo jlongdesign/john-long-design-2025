@@ -4,8 +4,8 @@
   "description": "A clean and unique UX Design Portfolio WordPress theme built with Bootstrap 5",
   "main": "index.js",
   "scripts": {
-    "sass": "sass assets/scss/main.scss assets/css/main.css --style=compressed --source-map",
-    "sass:watch": "sass assets/scss/main.scss assets/css/main.css --watch --style=compressed --source-map",
+    "sass": "sass assets/scss/main.scss assets/css/main.min.css --style=compressed --source-map",
+    "sass:watch": "sass assets/scss/main.scss assets/css/main.min.css --watch --style=compressed --source-map",
     "js:build": "uglifyjs assets/js/main.js -o assets/js/main.min.js --compress --mangle --source-map",
     "js:lightbox": "uglifyjs assets/js/lightbox.js -o assets/js/lightbox.min.js --compress --mangle --source-map",
     "build": "npm run sass && npm run js:build && npm run js:lightbox",
@@ -19,7 +19,7 @@
     "npm-run-all": "^4.1.5",
     "postcss": "^8.5.6",
     "postcss-cli": "^11.0.1",
-    "sass": "^1.92.1",
+    "sass": "^1.101.0",
     "uglify-js": "^3.17.4"
   },
   "keywords": [
