@@ -8,7 +8,7 @@ if (!defined('ABSPATH')) {
 }
 
 // Theme constants
-define('JLD_VERSION', '1.0');
+define('JLD_VERSION', wp_get_theme()->get('Version'));
 define('JLD_THEME_DIR', get_template_directory());
 define('JLD_THEME_URL', get_template_directory_uri());
 
