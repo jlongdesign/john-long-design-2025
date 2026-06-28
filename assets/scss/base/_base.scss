@@ -56,7 +56,6 @@ p {
 a {
   color: variables.$primary-color;
   text-decoration: none;
-  transition: variables.$transition-base;
 
   &:hover,
   &:focus {
