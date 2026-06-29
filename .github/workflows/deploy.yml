@@ -4,6 +4,7 @@ on:
   push:
     branches:
       - main
+      - master
       - staging
 
 jobs:
@@ -26,7 +27,7 @@ jobs:
           server-dir: /public_html/staging/wp-content/themes/john-long-design-2025/
 
       - name: Deploy to PRODUCTION
-        if: github.ref == 'refs/heads/main'
+        if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master'
         uses: SamKirkland/FTP-Deploy-Action@v4.3.4
         with:
           server: ${{ secrets.FTP_SERVER }}
