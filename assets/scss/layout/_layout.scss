@@ -37,11 +37,6 @@
           background-color: rgba(variables.$primary-color, 0.1);
           text-decoration: none;
         }
-
-        &.active {
-          color: variables.$primary-color;
-          background-color: rgba(variables.$primary-color, 0.1);
-        }
       }
     }
   }
