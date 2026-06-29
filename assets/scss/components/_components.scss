@@ -1,0 +1,215 @@
+// Component styles
+
+@use 'sass:color';
+@use '../abstracts/variables';
+@use '../abstracts/mixins' as mixins;
+
+// Buttons
+.btn {
+  font-weight: variables.$font-weight-semibold;
+  border-radius: variables.$border-radius-lg;
+  padding: 0.75rem 1.5rem;
+  transition: variables.$transition-base;
+  border: 2px solid transparent;
+  
+  &.btn-lg {
+    padding: 1rem 2rem;
+    font-size: variables.$font-size-lg;
+  }
+  
+  &.btn-sm {
+    padding: 0.5rem 1rem;
+    font-size: variables.$font-size-sm;
+  }
+  
+  &.btn-primary {
+    @include mixins.button-variant(variables.$primary-color);
+  }
+  
+  &.btn-outline-primary {
+    background-color: transparent;
+    color: variables.$primary-color;
+    border-color: variables.$primary-color;
+    
+    &:hover {
+      background-color: variables.$primary-color;
+      color: white;
+    }
+  }
+}
+
+// Cards
+.card {
+  border: none;
+  border-radius: variables.$border-radius-xl;
+  box-shadow: variables.$shadow-sm;
+  transition: variables.$transition-base;
+
+  &:hover {
+    box-shadow: variables.$shadow-lg;
+    transform: translateY(-2px);
+  }
+  
+  .card-body {
+    padding: 1.5rem;
+  }
+  
+  .card-img-top {
+    border-radius: variables.$border-radius-xl variables.$border-radius-xl 0 0;
+  }
+}
+
+// Project cards
+.project-card {
+  position: relative;
+  overflow: hidden;
+  
+  .project-image {
+    overflow: hidden;
+    
+    img {
+      transition: transform 0.3s ease;
+      width: 100%;
+      height: 250px;
+      object-fit: cover;
+    }
+  }
+  
+  .project-overlay {
+    background: rgba(variables.$dark-color, 0.8);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    
+    .btn {
+      transform: translateY(20px);
+      transition: transform 0.3s ease;
+    }
+  }
+  
+  &:hover {
+    .project-image img {
+      transform: scale(1.05);
+    }
+    
+    .project-overlay {
+      opacity: 1;
+      
+      .btn {
+        transform: translateY(0);
+      }
+    }
+  }
+}
+
+// Testimonial cards
+.testimonial-card {
+  border: 1px solid variables.$gray-200;
+  
+  .rating {
+    .fa-star {
+      font-size: variables.$font-size-sm;
+    }
+  }
+  
+  blockquote {
+    font-style: italic;
+    
+    p {
+      font-size: variables.$font-size-lg;
+      line-height: variables.$line-height-relaxed;
+    }
+  }
+  
+  .testimonial-author {
+    .author-avatar {
+      img {
+        width: 50px;
+        height: 50px;
+        object-fit: cover;
+      }
+    }
+  }
+}
+
+// Forms
+.form-control {
+  border: 2px solid variables.$gray-200;
+  border-radius: variables.$border-radius-lg;
+  padding: 0.75rem 1rem;
+  font-size: variables.$font-size-base;
+  transition: variables.$transition-base;
+
+  &:focus {
+    border-color: variables.$primary-color;
+    box-shadow: 0 0 0 0.2rem rgba(variables.$primary-color, 0.25);
+  }
+}
+
+.form-label {
+  font-weight: variables.$font-weight-semibold;
+  color: variables.$gray-700;
+  margin-bottom: 0.5rem;
+}
+
+// Alerts
+.alert {
+  border: none;
+  border-radius: variables.$border-radius-lg;
+  padding: 1rem 1.5rem;
+  
+  &.alert-success {
+    background-color: rgba(variables.$success-color, 0.1);
+    color: color.scale(variables.$success-color, $lightness: -50.7462686567%);
+    color: color.adjust(variables.$success-color, $lightness: -20%);
+  }
+  
+  &.alert-danger {
+    background-color: rgba(variables.$danger-color, 0.1);
+    color: color.scale(variables.$danger-color, $lightness: -33.2247557003%);
+    color: color.adjust(variables.$danger-color, $lightness: -20%);
+  }
+}
+
+// Badges
+.badge {
+  font-weight: variables.$font-weight-medium;
+  border-radius: variables.$border-radius;
+  
+  &.bg-primary {
+    background-color: variables.$primary-color !important;
+  }
+}
+
+// Navigation pills/tabs
+.nav-pills {
+  .nav-link {
+    border-radius: variables.$border-radius-lg;
+    color: variables.$gray-600;
+    font-weight: variables.$font-weight-medium;
+
+    &.active {
+      background-color: variables.$primary-color;
+    }
+    
+    &:hover:not(.active) {
+      background-color: rgba(variables.$primary-color, 0.1);
+      color: variables.$primary-color;
+    }
+  }
+}
+
+// Dropdown
+.dropdown-menu {
+  border: none;
+  box-shadow: variables.$shadow-lg;
+  border-radius: variables.$border-radius-lg;
+
+  .dropdown-item {
+    padding: 0.75rem 1rem;
+    
+    &:hover {
+      background-color: rgba(variables.$primary-color, 0.1);
+      color: variables.$primary-color;
+    }
+  }
+}

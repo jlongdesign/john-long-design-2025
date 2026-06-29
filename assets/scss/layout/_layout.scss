@@ -1,0 +1,106 @@
+// Layout styles
+
+@use '../abstracts/mixins';
+@use '../abstracts/variables';
+
+.site-header {
+  .navbar {
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+    transition: variables.$transition-base;
+    
+    .navbar-brand {
+      font-family: variables.$font-family-heading;
+      font-weight: variables.$font-weight-bold;
+      font-size: variables.$font-size-xl;
+      color: variables.$gray-900;
+      
+      &:hover {
+        color: variables.$primary-color;
+      }
+    }
+    
+    .navbar-nav {
+      .nav-link {
+        font-weight: variables.$font-weight-medium;
+        color: variables.$gray-700;
+        background-color: transparent;
+        margin-left: 0.5rem;
+        margin-right: 0.5rem;
+        padding: 0.5rem 1rem;
+        border-radius: variables.$border-radius;
+        transition: variables.$transition-base;
+        text-decoration: none;
+        
+        &:hover {
+          color: variables.$primary-color;
+          background-color: rgba(variables.$primary-color, 0.1);
+          text-decoration: none;
+        }
+      }
+    }
+  }
+}
+
+.site-main {
+  padding-top: 65px; // Account for fixed navbar
+}
+
+.site-footer {
+  .social-links {
+    a {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      background-color: rgba(white, 0.1);
+      transition: variables.$transition-base;
+      
+      &:hover {
+        background-color: variables.$primary-color;
+        transform: translateY(-2px);
+      }
+    }
+  }
+}
+
+// Container modifications
+.container-fluid {
+  &.no-padding {
+    padding-left: 0;
+    padding-right: 0;
+  }
+}
+
+// Section spacing
+section {
+  position: relative;
+  
+  &.py-5 {
+    padding-top: 5rem;
+    padding-bottom: 5rem;
+    
+    @include mixins.media-breakpoint-down(md) {
+      padding-top: 3rem;
+      padding-bottom: 3rem;
+    }
+  }
+}
+
+// Grid enhancements
+.row {
+  &.g-4 {
+    @include mixins.media-breakpoint-down(md) {
+      --bs-gutter-x: 1rem;
+      --bs-gutter-y: 1rem;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .site-main {
+    padding-top: 120px !important; // Increase padding for smaller screens
+  }
+}

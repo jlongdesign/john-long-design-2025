@@ -1,4 +1,4 @@
-# John Long Design Portfolio 2025 v2
+# John Long Design Portfolio 2025
 
 A clean and unique UX Design Portfolio WordPress theme built with Bootstrap 5, featuring organized SCSS files that compile to minified CSS and JavaScript files within an "assets" folder.
 
@@ -37,7 +37,7 @@ A clean and unique UX Design Portfolio WordPress theme built with Bootstrap 5, f
 ## File Structure
 
 ```
-john-long-design-2025-v2/
+john-long-design-2025/
 ├── assets/
 │   ├── scss/
 │   │   ├── main.scss

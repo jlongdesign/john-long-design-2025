@@ -1,0 +1,291 @@
+// Section-specific styles
+
+@use '../abstracts/variables';
+@use '../abstracts/mixins';
+
+// Hero Section
+.hero-section {
+  background: linear-gradient(135deg, rgba(169, 169, 169, 0.1) 0%, rgba(128, 128, 128, 0.1) 100%);
+  
+  .hero-content {
+    @include mixins.media-breakpoint-up(lg) {
+      padding: 3rem !important;
+    }
+  }
+  
+  .hero-text {
+    h1 {
+      background: linear-gradient(135deg, variables.$gray-900 0%, variables.$primary-color 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+  }
+  
+  .hero-image {
+    min-height: 500px;
+    
+    @include mixins.media-breakpoint-up(lg) {
+      // min-height: 100vh;
+    }
+    
+    img {
+      object-fit: cover;
+      object-position: top;
+      height: 100%;
+    }
+  }
+  
+  .hero-placeholder {
+    min-height: 500px;
+    background: linear-gradient(135deg, variables.$primary-color 0%, variables.$secondary-color 100%);
+    
+    @include mixins.media-breakpoint-up(lg) {
+      min-height: 100vh;
+    }
+  }
+}
+
+// Featured Projects Section
+.featured-projects {
+  .project-meta {
+    small {
+      font-size: variables.$font-size-xs;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+  }
+}
+
+// About Section
+.about-section {
+  .about-image {
+    position: relative;
+    
+    &::before {
+      content: '';
+      position: absolute;
+      top: -20px;
+      left: -20px;
+      right: 20px;
+      bottom: 20px;
+      background: linear-gradient(135deg, variables.$primary-color 0%, variables.$secondary-color 100%);
+      border-radius: variables.$border-radius-3xl;
+      z-index: -1;
+    }
+    
+    img {
+      border-radius: variables.$border-radius-3xl;
+    }
+  }
+  
+  .skills-list {
+    .badge {
+      font-size: variables.$font-size-sm;
+    }
+  }
+}
+
+// Testimonials Section
+.testimonials-section {
+  .testimonial-card {
+    position: relative;
+    
+    &::before {
+      font-family: "Font Awesome 6 Free"; /* Or "Font Awesome 6 Solid" etc. */
+      content: '\f10d'; /* Unicode for quote-left icon */
+      font-weight: 900; /* Required for solid icons */
+      position: absolute;
+      top: -38px;
+      left: 20px;
+      font-size: 4rem;
+      color: rgba(variables.$primary-color, 0.2);
+      line-height: 1;
+    }
+  }
+}
+
+// Resume Section
+.resume-section {
+  background: linear-gradient(135deg, variables.$primary-color 0%, variables.$secondary-color 100%);
+  
+  .btn-light {
+    &:hover {
+      transform: translateY(-2px);
+      box-shadow: variables.$shadow-lg;
+    }
+  }
+}
+
+// Contact Section
+.contact-section {
+  .contact-form {
+    background: white;
+    padding: 2rem;
+    border-radius: variables.$border-radius-2xl;
+    box-shadow: variables.$shadow-lg;
+
+    @include mixins.media-breakpoint-up(lg) {
+      padding: 3rem;
+    }
+  }
+}
+
+// Project Single Page
+.project-hero {
+  min-height: 60vh;
+  
+  .hero-image {
+    img {
+      height: 60vh;
+      object-fit: cover;
+    }
+  }
+  
+  .hero-overlay {
+    background: linear-gradient(to top, rgba(variables.$dark-color, 0.8) 0%, transparent 100%);
+  }
+}
+
+.project-meta {
+  background-color: variables.$gray-50;
+}
+
+.problem-section {
+  .problem-content {
+    border-left: 4px solid variables.$danger-color;
+  }
+  
+  .icon-box {
+    width: 60px;
+    height: 60px;
+    @include mixins.flex-center;
+  }
+}
+
+.research-section {
+  .research-card {
+    @include mixins.card-hover;
+  }
+  
+  .icon-box {
+    width: 60px;
+    height: 60px;
+    @include mixins.flex-center;
+  }
+}
+
+.insights-section {
+  .insight-card {
+    @include mixins.card-hover;
+  }
+  
+  .insight-number {
+    font-family: variables.$font-family-heading;
+    opacity: 0.8;
+  }
+}
+
+.solution-section {
+  .solution-image {
+    img {
+      cursor: pointer;
+      transition: variables.$transition-base;
+      
+      &:hover {
+        transform: scale(1.02);
+      }
+    }
+  }
+}
+
+.design-process {
+  .process-step {
+    .step-number {
+      font-family: variables.$font-family-heading;
+      margin-bottom: 1rem;
+    }
+  }
+}
+
+.results-section {
+  .result-stat {
+    .stat-number {
+      font-family: variables.$font-family-heading;
+    }
+  }
+}
+
+.project-testimonial {
+  background: linear-gradient(135deg, variables.$primary-color 0%, variables.$secondary-color 100%);
+}
+
+.project-navigation {
+  background-color: variables.$gray-50;
+
+  a {
+    text-decoration: none;
+    color: variables.$gray-700;
+    transition: variables.$transition-base;
+
+    &:hover {
+      color: variables.$primary-color;
+      text-decoration: none;
+    }
+  }
+}
+
+// Archive pages
+.page-header {
+  background-color: variables.$gray-50;
+}
+
+.projects-grid {
+  .project-card {
+    .project-image {
+      img {
+        height: 300px;
+      }
+    }
+  }
+}
+
+// WordPress specific
+.wp-block-image {
+  margin-bottom: 2rem;
+  
+  img {
+    border-radius: variables.$border-radius-lg;
+  }
+  
+  figcaption {
+    text-align: center;
+    font-size: variables.$font-size-sm;
+    color: variables.$gray-600;
+    margin-top: 0.5rem;
+  }
+}
+
+.wp-block-quote {
+  border-left: 4px solid variables.$primary-color;
+  padding-left: 1.5rem;
+  margin: 2rem 0;
+  font-style: italic;
+  
+  cite {
+    font-size: variables.$font-size-sm;
+    color: variables.$gray-600;
+  }
+}
+
+@media (max-width: 768px) {
+  .no-transform-sm {
+    transform: none !important;
+  }
+
+  // section.hero-section {
+  //   .hero-image {
+  //     min-height: 0 !important;
+  //   }
+  // }
+}

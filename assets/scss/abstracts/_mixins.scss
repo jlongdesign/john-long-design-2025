@@ -1,0 +1,132 @@
+// Theme Mixins
+@use 'variables';
+
+// Breakpoint variables (moved here for scope)
+$breakpoint-xs: 0 !default;
+$breakpoint-sm: 576px !default;
+$breakpoint-md: 768px !default;
+$breakpoint-lg: 992px !default;
+$breakpoint-xl: 1200px !default;
+$breakpoint-xxl: 1400px !default;
+
+// Now your mixins
+@mixin media-breakpoint-up($breakpoint) {
+  @if $breakpoint == lg {
+    @media (min-width: $breakpoint-lg) { @content; }
+  }
+  // ...rest of your mixins
+}
+
+// Responsive breakpoints
+@mixin media-breakpoint-up($breakpoint) {
+  @if $breakpoint == sm {
+    @media (min-width: $breakpoint-sm) { @content; }
+  } @else if $breakpoint == md {
+    @media (min-width: $breakpoint-md) { @content; }
+  } @else if $breakpoint == lg {
+    @media (min-width: $breakpoint-lg) { @content; }
+  } @else if $breakpoint == xl {
+    @media (min-width: $breakpoint-xl) { @content; }
+  } @else if $breakpoint == xxl {
+    @media (min-width: $breakpoint-xxl) { @content; }
+  }
+}
+
+@mixin media-breakpoint-down($breakpoint) {
+  @if $breakpoint == sm {
+    @media (max-width: #{$breakpoint-sm - 1px}) { @content; }
+  } @else if $breakpoint == md {
+    @media (max-width: #{$breakpoint-md - 1px}) { @content; }
+  } @else if $breakpoint == lg {
+    @media (max-width: #{$breakpoint-lg - 1px}) { @content; }
+  } @else if $breakpoint == xl {
+    @media (max-width: #{$breakpoint-xl - 1px}) { @content; }
+  }
+}
+
+// Button mixin
+@mixin button-variant($bg-color, $text-color: white, $hover-bg: darken($bg-color, 10%)) {
+  background-color: $bg-color;
+  color: $text-color;
+  border-color: $bg-color;
+  
+  &:hover,
+  &:focus {
+    background-color: $hover-bg;
+    border-color: $hover-bg;
+    color: $text-color;
+  }
+  
+  &:active {
+    background-color: darken($bg-color, 15%);
+    border-color: darken($bg-color, 15%);
+  }
+}
+
+// Gradient mixin
+@mixin gradient($start-color, $end-color, $direction: to right) {
+  background: linear-gradient($direction, $start-color, $end-color);
+}
+
+// Card mixin
+@mixin card-hover($scale: 1.02, $shadow: variables.$shadow-lg) {
+  // $transition-base should be a CSS transition property string, e.g., "all 0.3s ease" for smooth hover effects.
+    transition: variables.$transition-base;
+  
+  &:hover {
+    transform: translateY(-2px) scale($scale);
+    box-shadow: $shadow;
+  }
+}
+
+// Flexbox utilities
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+// Text truncation
+@mixin text-truncate {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+// Visually hidden
+@mixin visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+// Aspect ratio
+@mixin aspect-ratio($width, $height) {
+  position: relative;
+  
+  &::before {
+    content: '';
+    display: block;
+    padding-top: percentage($height / $width);
+  }
+  
+  > * {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+  }
+}

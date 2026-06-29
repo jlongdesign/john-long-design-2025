@@ -1,0 +1,238 @@
+// Utility classes
+
+// Import necessary modules and variables
+@use 'sass:map';
+@use 'sass:math';
+@use 'sass:color';
+
+// Import variables
+@use 'variables';
+
+// Import mixins
+@use 'mixins';
+
+// Background utilities
+.bg-gradient-primary {
+  background: linear-gradient(135deg, variables.$primary-color 0%, variables.$secondary-color 100%) !important;
+}
+
+.bg-gradient-dark {
+  background: linear-gradient(135deg, variables.$gray-800 0%, variables.$gray-900 100%) !important;
+}
+
+// Text utilities
+.text-gradient {
+  background: linear-gradient(135deg, variables.$primary-color 0%, variables.$secondary-color 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-shadow {
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+// Spacing utilities
+.pt-6 { padding-top: map.get(variables.$spacers, 6) !important; }
+.pb-6 { padding-bottom: map.get(variables.$spacers, 6) !important; }
+.py-6 { 
+  padding-top: map.get(variables.$spacers, 6) !important; 
+  padding-bottom: map.get(variables.$spacers, 6) !important; 
+}
+.mt-6 { margin-top: map.get(variables.$spacers, 6) !important; }
+.mb-6 { margin-bottom: map.get(variables.$spacers, 6) !important; }
+.my-6 { 
+  margin-top: map.get(variables.$spacers, 6) !important; 
+  margin-bottom: map.get(variables.$spacers, 6) !important; 
+}
+
+// Display utilities
+.d-flex-center {
+  @include mixins.flex-center;
+}
+
+.d-flex-between {
+  @include mixins.flex-between;
+}
+
+// Border utilities
+.border-gradient {
+  position: relative;
+  
+  &::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    padding: 2px;
+    background: linear-gradient(135deg, variables.$primary-color 0%, variables.$secondary-color 100%);
+    border-radius: inherit;
+    mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    mask-composite: exclude;
+  }
+}
+
+// Shadow utilities
+.shadow-colored {
+  box-shadow: 0 10px 25px rgba(variables.$primary-color, 0.15) !important;
+}
+
+.shadow-hover {
+  transition: variables.$transition-base;
+
+  &:hover {
+    box-shadow: variables.$shadow-xl !important;
+    transform: translateY(-2px);
+  }
+}
+
+// Animation utilities
+.animate-fade-in {
+  animation: fadeIn 0.5s ease-in-out;
+}
+
+.animate-slide-up {
+  animation: slideUp 0.5s ease-in-out;
+}
+
+.animate-bounce-in {
+  animation: bounceIn 0.6s ease-in-out;
+}
+
+// Keyframes
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+
+@keyframes bounceIn {
+  0% {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(1.02);
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+// Responsive utilities
+.min-vh-50 {
+  min-height: 50vh !important;
+}
+
+.min-vh-75 {
+  min-height: 75vh !important;
+}
+
+// Object fit utilities
+.object-fit-cover {
+  object-fit: cover !important;
+}
+
+.object-fit-contain {
+  object-fit: contain !important;
+}
+
+// Position utilities
+.position-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// Hover effects
+.hover-lift {
+  transition: variables.$transition-base;
+  
+  &:hover {
+    transform: translateY(-3px);
+  }
+}
+
+.hover-scale {
+  transition: variables.$transition-base;
+  
+  &:hover {
+    transform: scale(1.05);
+  }
+}
+
+// Loading states
+.loading {
+  position: relative;
+  pointer-events: none;
+  
+  &::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 20px;
+    height: 20px;
+    margin: -10px 0 0 -10px;
+    border: 2px solid variables.$gray-300;
+    border-top: 2px solid variables.$primary-color;
+    border-radius: 50%;
+    animation: spin 1s linear infinite;
+  }
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+// Accessibility utilities
+.sr-only {
+  @include mixins.visually-hidden;
+}
+
+.focus-visible {
+  &:focus-visible {
+    outline: 2px solid variables.$primary-color;
+    outline-offset: 2px;
+  }
+}
+
+// Custom scrollbar
+.custom-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: variables.$primary-color variables.$gray-200;
+  
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+  
+  &::-webkit-scrollbar-track {
+    background: variables.$gray-200;
+    border-radius: 4px;
+  }
+  
+  &::-webkit-scrollbar-thumb {
+    background: variables.$primary-color;
+    border-radius: 4px;
+    
+    &:hover {
+      background: color.scale(variables.$primary-color, $lightness: -20%);
+    }
+  }
+}
