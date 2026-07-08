@@ -68,7 +68,7 @@
             if ($featured_projects->have_posts()) :
                 while ($featured_projects->have_posts()) : $featured_projects->the_post();
             ?>
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-6 col-md-6">
                 <div class="project-card h-100 border-0 shadow-sm overflow-hidden rounded-3">
                     <div class="project-image position-relative">
                         <?php if (has_post_thumbnail()) : ?>
@@ -190,7 +190,7 @@
                 foreach ($testimonials as $testimonial) :
                     if (empty($testimonial['name']) && empty($testimonial['content'])) continue;
             ?>
-            <div class="col-lg-4 col-md-6">
+            <div class="col-lg-6 col-md-6">
                 <div class="testimonial-card bg-white p-4 rounded-3 shadow-sm h-100">
                     <div class="rating mb-3">
                         <?php for ($i = 1; $i <= 5; $i++) : ?>
