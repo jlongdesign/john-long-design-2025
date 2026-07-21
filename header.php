@@ -14,7 +14,7 @@
     <nav class="navbar navbar-expand-lg navbar-light bg-white fixed-top shadow-sm">
         <div class="container">
             <div class="row align-items-center w-100">
-                <div class="col-11 col-md-4 mb-3 mb-md-0">
+                <div class="col-11 col-md-3 mb-3 mb-md-0">
                     <a class="navbar-brand" href="<?php echo esc_url(home_url('/')); ?>">
                         <?php if (has_custom_logo()) : ?>
                             <?php the_custom_logo(); ?>

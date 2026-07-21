@@ -198,6 +198,88 @@
   }
 }
 
+// Architectural divider
+.divider-arch {
+  display: flex;
+  align-items: center;
+  max-width: 320px;
+  margin: 1rem 0;
+
+  // Short accent bar (orange)
+  &::before {
+    content: '';
+    width: 68px;
+    height: 3px;
+    background: variables.$primary-color;
+    flex-shrink: 0;
+  }
+
+  // Dashed trailing line — fades to nothing
+  &::after {
+    content: '';
+    flex: 1;
+    height: 3px;
+    margin-left: 10px;
+    background-image: repeating-linear-gradient(
+      to right,
+      variables.$gray-300 0,
+      variables.$gray-300 44px,
+      transparent 44px,
+      transparent 54px
+    );
+    -webkit-mask-image: linear-gradient(to right, black 0%, transparent 100%);
+    mask-image: linear-gradient(to right, black 0%, transparent 100%);
+  }
+
+  // Centered variant: accent in the middle, thin lines on both sides
+  &--center {
+    max-width: none;
+    justify-content: center;
+    gap: 10px;
+
+    &::before {
+      content: '';
+      flex: 1;
+      width: auto;
+      height: 3px;
+      background-color: transparent;
+      background-image: repeating-linear-gradient(
+        to right,
+        variables.$gray-300 0,
+        variables.$gray-300 44px,
+        transparent 44px,
+        transparent 54px
+      );
+      -webkit-mask-image: linear-gradient(to left, black 0%, transparent 100%);
+      mask-image: linear-gradient(to left, black 0%, transparent 100%);
+    }
+
+    // Central accent tick
+    .divider-arch__accent {
+      width: 68px;
+      height: 3px;
+      background: variables.$primary-color;
+      flex-shrink: 0;
+    }
+
+    &::after {
+      content: '';
+      flex: 1;
+      margin-left: 0;
+      height: 3px;
+      background-image: repeating-linear-gradient(
+        to right,
+        variables.$gray-300 0,
+        variables.$gray-300 44px,
+        transparent 44px,
+        transparent 54px
+      );
+      -webkit-mask-image: linear-gradient(to right, black 0%, transparent 100%);
+      mask-image: linear-gradient(to right, black 0%, transparent 100%);
+    }
+  }
+}
+
 // Dropdown
 .dropdown-menu {
   border: none;

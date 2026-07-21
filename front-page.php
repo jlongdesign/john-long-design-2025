@@ -3,22 +3,22 @@
 <!-- Hero Section -->
 <section class="hero-section position-relative overflow-hidden" id="hero">
     <div class="container px-0">
-        <div class="row g-0 min-vh-100 align-items-center">
+        <div class="row g-0 align-items-center hero-row">
             <div class="col-lg-6 hero-content p-5">
                 <div class="hero-text">
-                    <h1 class="display-3 fw-bold text-dark mb-4">
-                        <?php echo esc_html(get_theme_mod('hero_title', 'Creating Digital Experiences That Matter')); ?>
+                    <h1 class="display-3 fw-bold text-dark mb-2">
+                        <?php echo esc_html(get_theme_mod('hero_title', 'John Long')); ?><br/>
                     </h1>
-                    <p class="lead text-primary fw-semibold mb-3">
-                        <?php echo esc_html(get_theme_mod('hero_subtitle', 'UX Designer & Digital Strategist')); ?>
+                    <p class="display-6 text-orange fw-semibold mb-3">
+                        <?php echo esc_html(get_theme_mod('hero_subtitle', 'Lead Product Designer')); ?>
                     </p>
                     <p class="fs-5 text-muted mb-4">
                         <?php echo esc_html(get_theme_mod('hero_description', 'I help businesses create meaningful digital experiences through user-centered design and strategic thinking.')); ?>
                     </p>
-                    <div class="hero-buttons">
+                    <!-- <div class="hero-buttons">
                         <a href="#projects" class="btn btn-primary btn-lg me-3 mb-3 mb-md-0 ">View My Work</a>
                         <a href="#contact" class="btn btn-outline-primary btn-lg">Let's Talk</a>
-                    </div>
+                    </div> -->
                 </div>
             </div>
             <div class="col-lg-6 hero-image d-flex align-items-center justify-content-center d-none d-lg-block">
@@ -69,7 +69,7 @@
                 while ($featured_projects->have_posts()) : $featured_projects->the_post();
             ?>
             <div class="col-lg-6 col-md-6">
-                <div class="project-card h-100 border-0 shadow-sm overflow-hidden rounded-3">
+                <div class="project-card h-100 border-0 overflow-hidden rounded-3">
                     <div class="project-image position-relative">
                         <?php if (has_post_thumbnail()) : ?>
                             <a href="<?php the_permalink(); ?>">
@@ -117,7 +117,7 @@
 <section class="about-section py-5 bg-light" id="about">
     <div class="container">
         <div class="row align-items-center">
-            <div class="col-lg-6 mb-4 mb-lg-0">
+            <div class="col-lg-8 mb-4 mb-lg-0">
                 <?php
                 // Get about content from homepage meta
                 $about_title = get_post_meta(get_the_ID(), '_about_title', true) ?: 'About Me';
@@ -153,7 +153,7 @@
                 </div>
                 <?php endif; ?>
             </div>
-            <div class="col-lg-6">
+            <div class="col-lg-4">
                 <div class="about-image">
                     <?php 
                     $about_image_id = get_post_meta(get_the_ID(), '_about_image', true);

@@ -20,7 +20,20 @@
   background: linear-gradient(135deg, variables.$gray-800 0%, variables.$gray-900 100%) !important;
 }
 
+// Override Bootstrap bg utilities with warm tones
+.bg-light {
+  background-color: variables.$warm-100 !important;
+}
+
+.bg-white {
+  background-color: variables.$warm-50 !important;
+}
+
 // Text utilities
+.text-orange {
+  color: variables.$primary-color !important;
+}
+
 .text-gradient {
   background: linear-gradient(135deg, variables.$primary-color 0%, variables.$secondary-color 100%);
   -webkit-background-clip: text;

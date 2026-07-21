@@ -18,6 +18,13 @@
       &:hover {
         color: variables.$primary-color;
       }
+
+      .custom-logo {
+        @include mixins.media-breakpoint-up(lg) {
+          max-width: 150px;
+          height: auto;
+        }
+      }
     }
     
     .navbar-nav {

@@ -5,7 +5,11 @@
 
 // Hero Section
 .hero-section {
-  background: linear-gradient(135deg, rgba(169, 169, 169, 0.1) 0%, rgba(128, 128, 128, 0.1) 100%);
+  background: linear-gradient(135deg, variables.$warm-100 0%, variables.$warm-200 100%);
+
+  .hero-row {
+    min-height: 70vh;
+  }
   
   .hero-content {
     @include mixins.media-breakpoint-up(lg) {
@@ -23,10 +27,10 @@
   }
   
   .hero-image {
-    min-height: 500px;
+    min-height: 380px;
     
     @include mixins.media-breakpoint-up(lg) {
-      // min-height: 100vh;
+      min-height: 70vh;
     }
     
     img {
@@ -37,11 +41,11 @@
   }
   
   .hero-placeholder {
-    min-height: 500px;
+    min-height: 380px;
     background: linear-gradient(135deg, variables.$primary-color 0%, variables.$secondary-color 100%);
     
     @include mixins.media-breakpoint-up(lg) {
-      min-height: 100vh;
+      min-height: 70vh;
     }
   }
 }
@@ -65,10 +69,10 @@
     &::before {
       content: '';
       position: absolute;
-      top: -20px;
-      left: -20px;
-      right: 20px;
-      bottom: 20px;
+      top: -12px;
+      left: -12px;
+      right: 12px;
+      bottom: 12px;
       background: linear-gradient(135deg, variables.$primary-color 0%, variables.$secondary-color 100%);
       border-radius: variables.$border-radius-3xl;
       z-index: -1;

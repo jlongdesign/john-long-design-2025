@@ -75,9 +75,9 @@ if ($solution_intro || $solution_point_1_title || $solution_point_2_title) :
                                             ?>
                                                 <div class="carousel-item <?php echo $index === 0 ? 'active' : ''; ?>">
                                                     <a href="<?php echo esc_url($image_url); ?>" 
-                                                       data-lightbox="solution-point-1" 
+                                                       data-gallery="solution-point-1" 
                                                        data-title="<?php echo esc_attr($solution_point_1_title . ' - Image ' . ($index + 1)); ?>"
-                                                       class="lightbox-trigger">
+                                                       class="glightbox">
                                                         <img src="<?php echo esc_url($image_url); ?>" 
                                                              class="d-block w-100" 
                                                              alt="<?php echo esc_attr($image_alt ?: $solution_point_1_title . ' - Image ' . ($index + 1)); ?>"
@@ -110,26 +110,13 @@ if ($solution_intro || $solution_point_1_title || $solution_point_2_title) :
                                         </div>
                                     </div>
                                     
-                                    <!-- Hidden lightbox links for additional images -->
-                                    <div style="display: none;">
-                                        <?php foreach ($solution_point_1_images as $index => $image_id) : 
-                                            if ($index === 0) continue; // Skip first image (already visible)
-                                            $image_url = wp_get_attachment_image_url($image_id, 'large');
-                                            if ($image_url) :
-                                        ?>
-                                            <a href="<?php echo esc_url($image_url); ?>" 
-                                               data-lightbox="solution-point-1" 
-                                               data-title="<?php echo esc_attr($solution_point_1_title . ' - Image ' . ($index + 1)); ?>"></a>
-                                        <?php endif; endforeach; ?>
-                                    </div>
-                                    
                                 <?php else : ?>
                                     <!-- Single image -->
                                     <?php 
                                     $image_url = wp_get_attachment_image_url($solution_point_1_images[0], 'large');
                                     $image_alt = get_post_meta($solution_point_1_images[0], '_wp_attachment_image_alt', true);
                                     ?>
-                                    <a href="<?php echo esc_url($image_url); ?>" data-lightbox="solution-point-1" class="img-fluid rounded-3">
+                                    <a href="<?php echo esc_url($image_url); ?>" data-gallery="solution-point-1" class="glightbox img-fluid rounded-3">
                                         <img src="<?php echo esc_url($image_url); ?>" 
                                              alt="<?php echo esc_attr($image_alt ?: $solution_point_1_title); ?>" 
                                              class="img-fluid rounded-3">
@@ -172,9 +159,9 @@ if ($solution_intro || $solution_point_1_title || $solution_point_2_title) :
                                             ?>
                                                 <div class="carousel-item <?php echo $index === 0 ? 'active' : ''; ?>">
                                                     <a href="<?php echo esc_url($image_url); ?>" 
-                                                       data-lightbox="solution-point-2" 
+                                                       data-gallery="solution-point-2" 
                                                        data-title="<?php echo esc_attr($solution_point_2_title . ' - Image ' . ($index + 1)); ?>"
-                                                       class="lightbox-trigger">
+                                                       class="glightbox">
                                                         <img src="<?php echo esc_url($image_url); ?>" 
                                                              class="d-block w-100" 
                                                              alt="<?php echo esc_attr($image_alt ?: $solution_point_2_title . ' - Image ' . ($index + 1)); ?>"
@@ -207,26 +194,13 @@ if ($solution_intro || $solution_point_1_title || $solution_point_2_title) :
                                         </div>
                                     </div>
                                     
-                                    <!-- Hidden lightbox links for additional images -->
-                                    <div style="display: none;">
-                                        <?php foreach ($solution_point_2_images as $index => $image_id) : 
-                                            if ($index === 0) continue; // Skip first image (already visible)
-                                            $image_url = wp_get_attachment_image_url($image_id, 'large');
-                                            if ($image_url) :
-                                        ?>
-                                            <a href="<?php echo esc_url($image_url); ?>" 
-                                               data-lightbox="solution-point-2" 
-                                               data-title="<?php echo esc_attr($solution_point_2_title . ' - Image ' . ($index + 1)); ?>"></a>
-                                        <?php endif; endforeach; ?>
-                                    </div>
-                                    
                                 <?php else : ?>
                                     <!-- Single image -->
                                     <?php 
                                     $image_url = wp_get_attachment_image_url($solution_point_2_images[0], 'large');
                                     $image_alt = get_post_meta($solution_point_2_images[0], '_wp_attachment_image_alt', true);
                                     ?>
-                                    <a href="<?php echo esc_url($image_url); ?>" data-lightbox="solution-point-2" class="img-fluid rounded-3">
+                                    <a href="<?php echo esc_url($image_url); ?>" data-gallery="solution-point-2" class="glightbox img-fluid rounded-3">
                                         <img src="<?php echo esc_url($image_url); ?>" 
                                              alt="<?php echo esc_attr($image_alt ?: $solution_point_2_title); ?>" 
                                              class="img-fluid rounded-3">
