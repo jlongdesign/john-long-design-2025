@@ -21,7 +21,7 @@
                     </div> -->
                 </div>
             </div>
-            <div class="col-lg-6 hero-image d-flex align-items-center justify-content-center d-none d-lg-block">
+            <div class="col-lg-6 hero-image d-none d-lg-flex align-items-center justify-content-center">
                 <?php 
                 $hero_image_id = get_theme_mod('hero_image');
                 if ($hero_image_id) {
@@ -180,7 +180,7 @@
             </div>
         </div>
         
-        <div class="row g-5">
+        <div class="row">
             <?php
             // Get testimonials from homepage meta
             $homepage_id = get_option('page_on_front');
@@ -190,7 +190,7 @@
                 foreach ($testimonials as $testimonial) :
                     if (empty($testimonial['name']) && empty($testimonial['content'])) continue;
             ?>
-            <div class="col-lg-6 col-md-6">
+            <div class="col-lg-6 col-md-6 mb-5 mb-md-0">
                 <div class="testimonial-card bg-white p-4 rounded-3 shadow-sm h-100">
                     <div class="rating mb-3">
                         <?php for ($i = 1; $i <= 5; $i++) : ?>

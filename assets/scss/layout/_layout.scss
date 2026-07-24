@@ -59,10 +59,10 @@
 }
 
 .site-main {
-  padding-top: 92px; // logo(60px) + padding-top(1rem) + padding-bottom(1rem)
+  padding-top: 45px; // logo(60px) + padding-top(1rem) + padding-bottom(1rem)
 
   @include mixins.media-breakpoint-up(lg) {
-    padding-top: 102px; // logo(70px) + padding-top(1rem) + padding-bottom(1rem)
+    padding-top: 101px; // logo(70px) + navbar padding — fine-tuned to rendered height
   }
 }
 
