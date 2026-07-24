@@ -46,7 +46,7 @@
     <div class="container">
         <div class="row mb-5">
             <div class="col-lg-8 mx-auto text-center">
-                <h2 class="display-4 fw-bold mb-4">Featured Projects</h2>
+                <h2 class="display-4 fw-bold mb-4"></span>Featured <span style="color: #ff6600;">/</span> Projects</h2>
                 <p class="lead text-muted">Explore some of my recent work and the stories behind them</p>
             </div>
         </div>

@@ -22,9 +22,9 @@ $project_url = get_post_meta(get_the_ID(), '_project_url', true);
         <div class="container">
             <div class="row">
                 <div class="col-lg-8">
-                    <div class="hero-content p-5">
-                        <h1 class="display-3 text-white fw-bold mb-4"><?php the_title(); ?></h1>
-                        <p class="lead text-white mb-0"><?php echo get_the_excerpt(); ?></p>
+                        <div class="hero-content p-3 p-md-5">
+                        <h1 class="display-3 text-white fw-bold mb-3 mb-md-4"><?php the_title(); ?></h1>
+                        <p class="lead text-white mb-0 d-none d-md-block"><?php echo get_the_excerpt(); ?></p>
                     </div>
                 </div>
             </div>

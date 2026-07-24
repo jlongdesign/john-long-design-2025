@@ -137,17 +137,34 @@
 
 // Project Single Page
 .project-hero {
-  min-height: 60vh;
+  min-height: 45vh;
+
+  @include mixins.media-breakpoint-up(md) {
+    min-height: 60vh;
+  }
   
   .hero-image {
     img {
-      height: 60vh;
+      height: 45vh;
       object-fit: cover;
+
+      @include mixins.media-breakpoint-up(md) {
+        height: 60vh;
+      }
     }
   }
   
   .hero-overlay {
     background: linear-gradient(to top, rgba(variables.$dark-color, 0.8) 0%, transparent 100%);
+  }
+
+  .hero-content {
+    h1 {
+      @include mixins.media-breakpoint-down(md) {
+        font-size: 1.5rem;
+        line-height: 1.2;
+      }
+    }
   }
 }
 

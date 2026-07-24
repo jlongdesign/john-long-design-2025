@@ -760,10 +760,14 @@ select:focus {
 .site-header .navbar .navbar-brand:hover {
   color: #f48a4c;
 }
+.site-header .navbar .navbar-brand .custom-logo {
+  max-height: 48px;
+  width: auto;
+}
 @media (min-width: 992px) {
   .site-header .navbar .navbar-brand .custom-logo {
-    max-width: 150px;
-    height: auto;
+    max-height: 56px;
+    max-width: 180px;
   }
 }
 .site-header .navbar .navbar-nav .nav-link {

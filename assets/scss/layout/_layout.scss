@@ -19,10 +19,19 @@
         color: variables.$primary-color;
       }
 
+    } // end .navbar-brand text fallback styles
+
+    .custom-logo-link.navbar-brand {
+      padding: 0;
+
       .custom-logo {
+        height: 60px;
+        width: auto;
+        max-width: none;
+        display: block;
+
         @include mixins.media-breakpoint-up(lg) {
-          max-width: 150px;
-          height: auto;
+          height: 70px;
         }
       }
     }
@@ -50,7 +59,11 @@
 }
 
 .site-main {
-  padding-top: 65px; // Account for fixed navbar
+  padding-top: 92px; // logo(60px) + padding-top(1rem) + padding-bottom(1rem)
+
+  @include mixins.media-breakpoint-up(lg) {
+    padding-top: 102px; // logo(70px) + padding-top(1rem) + padding-bottom(1rem)
+  }
 }
 
 .site-footer {
@@ -103,11 +116,5 @@ section {
       --bs-gutter-x: 1rem;
       --bs-gutter-y: 1rem;
     }
-  }
-}
-
-@media (max-width: 768px) {
-  .site-main {
-    padding-top: 120px !important; // Increase padding for smaller screens
   }
 }
