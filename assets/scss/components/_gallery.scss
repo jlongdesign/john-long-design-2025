@@ -1,36 +1,198 @@
+@use '../abstracts/variables';
+
 .project-gallery__grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-    gap: 1rem;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 2rem;
 }
 
 .project-gallery__item {
     margin: 0;
-    overflow: hidden;
-    border-radius: 4px;
-    height: 350px;
+
+    &--desktop {
+        flex: 1 1 560px;
+        max-width: 720px;
+    }
+
+    &--mobile {
+        flex: 0 1 280px;
+        max-width: 300px;
+    }
 }
 
 .project-gallery__link {
     display: block;
-    height: 100%;
 }
 
 .project-gallery__image {
     width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: top;
+    height: auto;
     display: block;
-    transition: transform 0.3s ease;
-}
-
-.project-gallery__link:hover .project-gallery__image {
-    transform: scale(1.03);
 }
 
 .project-gallery__caption {
     font-size: 0.875rem;
     padding: 0.5rem 0;
     color: #666;
+}
+
+.project-gallery__scroll-hint {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35rem;
+    margin: 0.6rem 0 0;
+    font-size: variables.$font-size-xs;
+    color: variables.$gray-500;
+}
+
+.project-gallery__scroll-icon {
+    font-size: 0.75rem;
+    line-height: 1;
+}
+
+.device-frame__address {
+    padding: 3px 12px;
+    font-size: variables.$font-size-xs;
+    color: variables.$gray-500;
+    background: #fff;
+    border: 1px solid variables.$gray-200;
+    border-radius: variables.$border-radius-xl;
+    flex: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+// Device frames — make screenshots look like a real browser window or phone.
+.device-frame {
+    background: #fff;
+    box-shadow: variables.$shadow-lg;
+    overflow: hidden;
+}
+
+.device-frame__screen {
+    position: relative;
+    overflow-y: auto;
+    scrollbar-width: thin;
+
+    // Hint that the frame is scrollable with a fading gradient at the bottom.
+    &::after {
+        content: '';
+        position: sticky;
+        left: 0;
+        bottom: 0;
+        display: block;
+        width: 100%;
+        height: 32px;
+        margin-top: -32px;
+        pointer-events: none;
+        background: linear-gradient(to bottom, rgba(255, 255, 255, 0), rgba(0, 0, 0, 0.08));
+    }
+}
+
+// Desktop: browser chrome
+.device-frame--desktop {
+    border-radius: variables.$border-radius-lg;
+    border: 1px solid variables.$gray-200;
+
+    .device-frame__bar {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 10px 12px;
+        background: variables.$gray-100;
+        border-bottom: 1px solid variables.$gray-200;
+    }
+
+    .device-frame__dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        flex-shrink: 0;
+
+        &--red { background: #ff5f57; }
+        &--yellow { background: #febc2e; }
+        &--green { background: #28c840; }
+    }
+
+    .device-frame__address {
+        margin-left: 10px;
+    }
+
+    .device-frame__screen {
+        height: 420px;
+    }
+}
+
+// Mobile: phone bezel
+.device-frame--mobile {
+    background: variables.$gray-300;
+    border-radius: 2.25rem;
+    padding: 12px 10px;
+    max-width: 280px;
+    margin: 0 auto;
+    border: 1px solid variables.$gray-200;
+
+    .device-frame__notch {
+        width: 90px;
+        height: 20px;
+        margin: 0 auto 8px;
+        background: variables.$gray-300;
+        border-radius: 0 0 14px 14px;
+        position: relative;
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 6px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 40px;
+            height: 6px;
+            border-radius: 3px;
+            background: #000;
+        }
+    }
+
+    .device-frame__mobile-bar {
+        display: flex;
+        background-color: variables.$gray-100;
+        border: 1px solid variables.$gray-200;
+        border-top-left-radius: 1.25rem;
+        border-top-right-radius: 1.25rem;
+    }
+
+    .device-frame__address {
+        margin: 0 auto;
+        max-width: 95%;
+    }
+
+    .device-frame__screen {
+        height: 480px;
+        // border-radius: 1.25rem;
+        border-bottom-left-radius: 1.25rem;
+        border-bottom-right-radius: 1.25rem;
+        background: #fff;
+        border: 1px solid variables.$gray-200;
+    }
+
+    .device-frame__home-indicator {
+        width: 90px;
+        height: 4px;
+        margin: 8px auto 2px;
+        border-radius: 2px;
+        background: variables.$gray-600;
+    }
+}
+
+@media (max-width: variables.$breakpoint-sm) {
+    .device-frame--desktop .device-frame__screen {
+        height: 300px;
+    }
+
+    .device-frame--mobile .device-frame__screen {
+        height: 380px;
+    }
 }
