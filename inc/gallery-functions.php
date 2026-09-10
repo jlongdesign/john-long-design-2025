@@ -30,22 +30,30 @@ function jld_render_project_gallery_metabox( $post ) {
 
     $gallery_ids = get_post_meta( $post->ID, '_project_gallery_ids', true );
     $gallery_ids = ! empty( $gallery_ids ) ? explode( ',', $gallery_ids ) : [];
+
+    $devices_raw = get_post_meta( $post->ID, '_project_gallery_devices', true );
+    $devices     = $devices_raw ? json_decode( $devices_raw, true ) : [];
+    if ( ! is_array( $devices ) ) {
+        $devices = [];
+    }
     ?>
 
     <div class="jld-gallery-metabox">
         <p class="description">
-            <?php _e( 'Add images to the project gallery. Drag to reorder.', 'john-long-design' ); ?>
+            <?php _e( 'Add images to the project gallery. Drag to reorder. Click the device label on an image to switch between Desktop and Mobile.', 'john-long-design' ); ?>
         </p>
 
         <ul class="jld-gallery-metabox__list" id="jld-gallery-list">
             <?php foreach ( $gallery_ids as $image_id ) :
                 $image_id = absint( $image_id );
                 if ( ! $image_id ) continue;
-                $thumb = wp_get_attachment_image_url( $image_id, 'thumbnail' );
-                $alt   = get_post_meta( $image_id, '_wp_attachment_image_alt', true );
+                $thumb  = wp_get_attachment_image_url( $image_id, 'thumbnail' );
+                $alt    = get_post_meta( $image_id, '_wp_attachment_image_alt', true );
+                $device = isset( $devices[ $image_id ] ) && 'mobile' === $devices[ $image_id ] ? 'mobile' : 'desktop';
             ?>
-                <li class="jld-gallery-metabox__item" data-id="<?php echo esc_attr( $image_id ); ?>">
+                <li class="jld-gallery-metabox__item" data-id="<?php echo esc_attr( $image_id ); ?>" data-device="<?php echo esc_attr( $device ); ?>">
                     <img src="<?php echo esc_url( $thumb ); ?>" alt="<?php echo esc_attr( $alt ); ?>">
+                    <button type="button" class="jld-gallery-metabox__device"><?php echo esc_html( 'mobile' === $device ? 'Mobile' : 'Desktop' ); ?></button>
                     <button type="button" class="jld-gallery-metabox__remove" aria-label="<?php esc_attr_e( 'Remove image', 'john-long-design' ); ?>">&times;</button>
                 </li>
             <?php endforeach; ?>
@@ -56,6 +64,13 @@ function jld_render_project_gallery_metabox( $post ) {
             id="jld-gallery-ids"
             name="jld_project_gallery_ids"
             value="<?php echo esc_attr( implode( ',', $gallery_ids ) ); ?>"
+        >
+
+        <input
+            type="hidden"
+            id="jld-gallery-devices"
+            name="jld_project_gallery_devices"
+            value="<?php echo esc_attr( wp_json_encode( $devices ) ); ?>"
         >
 
         <button type="button" class="button button-primary" id="jld-gallery-add">
@@ -86,6 +101,19 @@ function jld_render_project_gallery_metabox( $post ) {
             object-fit: cover;
             border-radius: 3px;
             border: 1px solid #ddd;
+        }
+        .jld-gallery-metabox__device {
+            position: absolute;
+            left: 0;
+            bottom: 0;
+            width: 100%;
+            border: none;
+            background: rgba(0, 0, 0, 0.7);
+            color: #fff;
+            font-size: 10px;
+            line-height: 1.4;
+            padding: 2px 0;
+            cursor: pointer;
         }
         .jld-gallery-metabox__remove {
             position: absolute;
@@ -134,8 +162,9 @@ function jld_render_project_gallery_metabox( $post ) {
                     if ( $( '#jld-gallery-list [data-id="' + id + '"]' ).length ) return;
 
                     $( '#jld-gallery-list' ).append(
-                        `<li class="jld-gallery-metabox__item" data-id="${id}">
+                        `<li class="jld-gallery-metabox__item" data-id="${id}" data-device="desktop">
                             <img src="${thumb}" alt="${alt}">
+                            <button type="button" class="jld-gallery-metabox__device">Desktop</button>
                             <button type="button" class="jld-gallery-metabox__remove" aria-label="Remove image">&times;</button>
                         </li>`
                     );
@@ -149,18 +178,31 @@ function jld_render_project_gallery_metabox( $post ) {
                 updateIds();
             });
 
+            // Toggle device type
+            $( '#jld-gallery-list' ).on( 'click', '.jld-gallery-metabox__device', function() {
+                const $item     = $( this ).closest( 'li' );
+                const isMobile  = $item.data( 'device' ) === 'mobile';
+                const newDevice = isMobile ? 'desktop' : 'mobile';
+                $item.data( 'device', newDevice ).attr( 'data-device', newDevice );
+                $( this ).text( newDevice === 'mobile' ? 'Mobile' : 'Desktop' );
+                updateIds();
+            });
+
             // Drag to reorder
             $( '#jld-gallery-list' ).sortable({
                 update: updateIds
             });
 
-            // Sync hidden input
+            // Sync hidden inputs
             function updateIds() {
-                const ids = $( '#jld-gallery-list .jld-gallery-metabox__item' )
-                    .map( function() { return $( this ).data( 'id' ); } )
-                    .get()
-                    .join( ',' );
-                $( '#jld-gallery-ids' ).val( ids );
+                const $items = $( '#jld-gallery-list .jld-gallery-metabox__item' );
+                const ids     = $items.map( function() { return $( this ).data( 'id' ); } ).get();
+                const devices = {};
+                $items.each( function() {
+                    devices[ $( this ).data( 'id' ) ] = $( this ).data( 'device' ) || 'desktop';
+                });
+                $( '#jld-gallery-ids' ).val( ids.join( ',' ) );
+                $( '#jld-gallery-devices' ).val( JSON.stringify( devices ) );
             }
         });
     </script>
@@ -206,6 +248,19 @@ function jld_save_project_gallery( $post_id ) {
         update_post_meta( $post_id, '_project_gallery_ids', implode( ',', $gallery_ids ) );
     } else {
         delete_post_meta( $post_id, '_project_gallery_ids' );
+    }
+
+    if ( isset( $_POST['jld_project_gallery_devices'] ) ) {
+        $raw_devices = json_decode( wp_unslash( $_POST['jld_project_gallery_devices'] ), true );
+        $devices     = [];
+        if ( is_array( $raw_devices ) ) {
+            foreach ( $raw_devices as $image_id => $device ) {
+                $devices[ absint( $image_id ) ] = 'mobile' === $device ? 'mobile' : 'desktop';
+            }
+        }
+        update_post_meta( $post_id, '_project_gallery_devices', wp_json_encode( $devices ) );
+    } else {
+        delete_post_meta( $post_id, '_project_gallery_devices' );
     }
 }
 add_action( 'save_post', 'jld_save_project_gallery' );
