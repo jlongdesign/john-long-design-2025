@@ -25,7 +25,7 @@ if ( empty( $gallery_ids ) ) {
     <div class="text-center mb-4">
         <h2 class="display-5 fw-bold mb-4"><?php _e( 'Project Gallery', 'john-long-design' ); ?></h2>
         <p class="lead text-muted">
-            <?php _e( 'Click a desktop screenshot to view it full size, or scroll within a mobile frame to see more.', 'john-long-design' ); ?>
+            <?php _e( 'Scroll within a desktop screenshot to view more or click a desktop screenshot to view it full size. Scroll within a mobile frame to see more.', 'john-long-design' ); ?>
         </p>
     </div>
 
@@ -103,7 +103,7 @@ if ( empty( $gallery_ids ) ) {
 
                 <p class="project-gallery__scroll-hint">
                     <span class="project-gallery__scroll-icon" aria-hidden="true">&#8597;</span>
-                    <?php _e( 'Scroll to see more', 'john-long-design' ); ?>
+                    <?php _e( 'Scroll within the frame to see more', 'john-long-design' ); ?>
                 </p>
 
                 <?php if ( $image_caption ) : ?>

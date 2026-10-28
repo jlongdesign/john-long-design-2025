@@ -19,7 +19,7 @@ if ($problem_intro || $problem_point_1_title || $problem_point_2_title) :
     <section class="problem-section py-5 bg-light">
         <div class="container">
             <div class="row">
-                <div class="col-lg-8 mx-auto">
+                <div class="col-lg-10 mx-auto">
                     <div class="section-content">
                         <h2 class="display-5 fw-bold mb-4">The Problem</h2>
                         <div class="problem-content bg-white p-4 rounded-3 shadow-sm">

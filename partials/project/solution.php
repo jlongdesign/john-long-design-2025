@@ -39,7 +39,7 @@ if ($solution_intro || $solution_point_1_title || $solution_point_2_title) :
     <div class="container">
         <div class="row">
             <div class="col-lg-10 mx-auto">
-                <div class="text-center mb-5">
+                <div class="mb-5">
                     <h2 class="display-5 fw-bold mb-4"><?php echo esc_html($solution_title ?: 'The Solution'); ?></h2>
                     <?php if ($solution_intro) : ?>
                     <div class="lead text-muted">
@@ -62,7 +62,7 @@ if ($solution_intro || $solution_point_1_title || $solution_point_2_title) :
                         </div>
                     </div>
                     <div class="col-lg-6">
-                        <div class="solution-image shadow rounded-3 p-4 bg-white overflow-hidden">
+                        <div class="solution-image text-center">
                             <?php if (!empty($solution_point_1_images)) : ?>
                                 <?php if (count($solution_point_1_images) > 1) : ?>
                                     <!-- Carousel for multiple images -->
@@ -79,7 +79,7 @@ if ($solution_intro || $solution_point_1_title || $solution_point_2_title) :
                                                        data-title="<?php echo esc_attr($solution_point_1_title . ' - Image ' . ($index + 1)); ?>"
                                                        class="glightbox">
                                                         <img src="<?php echo esc_url($image_url); ?>" 
-                                                             class="d-block w-100" 
+                                                             class="d-block w-100 h-100" 
                                                              alt="<?php echo esc_attr($image_alt ?: $solution_point_1_title . ' - Image ' . ($index + 1)); ?>"
                                                              style="height: 350px; object-fit: cover; object-position: top;">
                                                     </a>
@@ -111,16 +111,18 @@ if ($solution_intro || $solution_point_1_title || $solution_point_2_title) :
                                     </div>
                                     
                                 <?php else : ?>
-                                    <!-- Single image -->
+                                    <!-- Single image — bleeds off the right edge of the viewport -->
                                     <?php 
                                     $image_url = wp_get_attachment_image_url($solution_point_1_images[0], 'large');
                                     $image_alt = get_post_meta($solution_point_1_images[0], '_wp_attachment_image_alt', true);
                                     ?>
-                                    <a href="<?php echo esc_url($image_url); ?>" data-gallery="solution-point-1" class="glightbox img-fluid rounded-3">
-                                        <img src="<?php echo esc_url($image_url); ?>" 
-                                             alt="<?php echo esc_attr($image_alt ?: $solution_point_1_title); ?>" 
-                                             class="img-fluid rounded-3">
-                                    </a>
+                                    <div class="solution-image__bleed">
+                                        <a href="<?php echo esc_url($image_url); ?>" data-gallery="solution-point-1" class="glightbox d-block">
+                                            <img src="<?php echo esc_url($image_url); ?>" 
+                                                 alt="<?php echo esc_attr($image_alt ?: $solution_point_1_title); ?>" 
+                                                 class="solution-image__bleed-img">
+                                        </a>
+                                    </div>
                                 <?php endif; ?>
                             <?php else : ?>
                                 <div class="placeholder bg-light rounded-3 d-flex align-items-center justify-content-center" style="height: 300px;">
@@ -146,7 +148,7 @@ if ($solution_intro || $solution_point_1_title || $solution_point_2_title) :
                         </div>
                     </div>
                     <div class="col-lg-6 order-lg-1">
-                        <div class="solution-image shadow rounded-3 p-4 bg-white overflow-hidden">
+                        <div class="solution-image overflow-hidden">
                             <?php if (!empty($solution_point_2_images)) : ?>
                                 <?php if (count($solution_point_2_images) > 1) : ?>
                                     <!-- Carousel for multiple images -->
@@ -163,7 +165,7 @@ if ($solution_intro || $solution_point_1_title || $solution_point_2_title) :
                                                        data-title="<?php echo esc_attr($solution_point_2_title . ' - Image ' . ($index + 1)); ?>"
                                                        class="glightbox">
                                                         <img src="<?php echo esc_url($image_url); ?>" 
-                                                             class="d-block w-100" 
+                                                             class="d-block w-100 h-100" 
                                                              alt="<?php echo esc_attr($image_alt ?: $solution_point_2_title . ' - Image ' . ($index + 1)); ?>"
                                                              style="height: 350px; object-fit: cover; object-position: top;">
                                                     </a>
@@ -203,7 +205,7 @@ if ($solution_intro || $solution_point_1_title || $solution_point_2_title) :
                                     <a href="<?php echo esc_url($image_url); ?>" data-gallery="solution-point-2" class="glightbox img-fluid rounded-3">
                                         <img src="<?php echo esc_url($image_url); ?>" 
                                              alt="<?php echo esc_attr($image_alt ?: $solution_point_2_title); ?>" 
-                                             class="img-fluid rounded-3">
+                                             class="img-fluid rounded-3 h-100">
                                     </a>
                                 <?php endif; ?>
                             <?php else : ?>
