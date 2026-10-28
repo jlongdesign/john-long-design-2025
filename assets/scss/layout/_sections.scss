@@ -153,10 +153,19 @@
         height: 60vh;
       }
     }
+
+    &--gradient {
+      height: 45vh;
+      width: 100%;
+
+      @include mixins.media-breakpoint-up(md) {
+        height: 60vh;
+      }
+    }
   }
   
   .hero-overlay {
-    background: linear-gradient(to top, rgba(variables.$dark-color, 0.8) 0%, transparent 100%);
+    // background: linear-gradient(to top, rgba(variables.$dark-color, 0.8) 0%, transparent 100%);
   }
 
   .hero-content {
@@ -217,6 +226,45 @@
       &:hover {
         transform: scale(1.02);
       }
+    }
+  }
+}
+
+// Full-bleed image for solution points with a single screenshot — the
+// text column stays put, only the image extends to the viewport's right edge.
+.project-solution {
+  overflow-x: hidden;
+
+  .solution-image__bleed {
+    @include mixins.media-breakpoint-up(lg) {
+      position: relative;
+      width: 100vw;
+      max-width: 100vw;
+      margin-right: calc(-50vw + 50%);
+    }
+  }
+
+  .solution-image__bleed-img {
+    display: block;
+    width: 100%;
+    height: 320px;
+    object-fit: none;
+    object-position: left top;
+    cursor: pointer;
+    border-radius: variables.$border-radius-lg;
+    transition: variables.$transition-base;
+
+    &:hover {
+      transform: scale(1.01);
+    }
+
+    @include mixins.media-breakpoint-up(lg) {
+      height: 720px;
+      border-radius: variables.$border-radius-lg 0 0 variables.$border-radius-lg;
+    }
+
+    @include mixins.media-breakpoint-up(xl) {
+      height: 720px;
     }
   }
 }

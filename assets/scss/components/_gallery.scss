@@ -122,13 +122,13 @@
     }
 
     .device-frame__screen {
-        height: 420px;
+        height: 620px;
     }
 }
 
 // Mobile: phone bezel
 .device-frame--mobile {
-    background: variables.$gray-300;
+    background: variables.$gray-100;
     border-radius: 2.25rem;
     padding: 12px 10px;
     max-width: 280px;
@@ -158,7 +158,7 @@
 
     .device-frame__mobile-bar {
         display: flex;
-        background-color: variables.$gray-100;
+        background-color: variables.$gray-200;
         border: 1px solid variables.$gray-200;
         border-top-left-radius: 1.25rem;
         border-top-right-radius: 1.25rem;

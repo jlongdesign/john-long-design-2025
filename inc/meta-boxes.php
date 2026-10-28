@@ -293,6 +293,10 @@ function jld_project_details_callback($post) {
     $project_duration = get_post_meta($post->ID, '_project_duration', true);
     $project_url = get_post_meta($post->ID, '_project_url', true);
     $project_overview = get_post_meta($post->ID, '_project_overview', true);
+    $hero_use_gradient = get_post_meta($post->ID, '_hero_use_gradient', true);
+    $hero_gradient_start = get_post_meta($post->ID, '_hero_gradient_start', true) ?: '#f48a4c';
+    $hero_gradient_end = get_post_meta($post->ID, '_hero_gradient_end', true) ?: '#3b82f6';
+    $hero_gradient_angle = get_post_meta($post->ID, '_hero_gradient_angle', true) ?: '135';
     
     // Problem fields
     $problem_intro = get_post_meta($post->ID, '_problem_intro', true);
@@ -439,6 +443,25 @@ function jld_project_details_callback($post) {
                         Mark as featured project for homepage
                     </label>
                     <p class="field-description">Featured projects appear on the homepage (up to 3 will be displayed)</p>
+                </td>
+            </tr>
+            <tr>
+                <td><label for="hero_use_gradient">Hero Background:</label></td>
+                <td>
+                    <label for="hero_use_gradient">
+                        <input type="checkbox"
+                            id="hero_use_gradient"
+                            name="hero_use_gradient"
+                            value="1"
+                            <?php checked($hero_use_gradient, '1'); ?> />
+                        Use a gradient instead of the featured image
+                    </label>
+                    <p class="field-description">
+                        Start color <input type="color" id="hero_gradient_start" name="hero_gradient_start" value="<?php echo esc_attr($hero_gradient_start); ?>" />
+                        End color <input type="color" id="hero_gradient_end" name="hero_gradient_end" value="<?php echo esc_attr($hero_gradient_end); ?>" />
+                        Angle <input type="number" id="hero_gradient_angle" name="hero_gradient_angle" value="<?php echo esc_attr($hero_gradient_angle); ?>" min="0" max="360" step="1" class="small-text" />deg
+                    </p>
+                    <p class="field-description">When enabled, the project hero section shows this gradient instead of the featured image.</p>
                 </td>
             </tr>
         </table>
@@ -1206,6 +1229,9 @@ function jld_save_meta_data($post_id) {
                 'project_duration',
                 'project_url', 
                 'project_featured',
+                'hero_gradient_start',
+                'hero_gradient_end',
+                'hero_gradient_angle',
                 'project_overview',
                 'problem_intro',
                 'problem_point_1_title',
@@ -1293,11 +1319,18 @@ function jld_save_meta_data($post_id) {
                         update_post_meta($post_id, '_' . $field, intval($_POST[$field]));
                     } elseif ($field === 'project_url') {
                         update_post_meta($post_id, '_' . $field, esc_url_raw($_POST[$field]));
+                    } elseif (in_array($field, array('hero_gradient_start', 'hero_gradient_end'))) {
+                        update_post_meta($post_id, '_' . $field, sanitize_hex_color($_POST[$field]));
+                    } elseif ($field === 'hero_gradient_angle') {
+                        update_post_meta($post_id, '_' . $field, min(360, max(0, intval($_POST[$field]))));
                     } else {
                         update_post_meta($post_id, '_' . $field, sanitize_text_field($_POST[$field]));
                     }
                 }
             }
+
+            // Checkboxes are absent from $_POST entirely when unchecked.
+            update_post_meta($post_id, '_hero_use_gradient', isset($_POST['hero_use_gradient']) ? '1' : '0');
         }
     }
 
